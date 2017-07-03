@@ -17,7 +17,7 @@ import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
 public class DevelopmentDatabaseConfig {
  
   protected static final int DB_PORT = 3310;
- 
+  
   @Bean
   @DependsOn("mariadb4j")
   public DataSource ds() {
@@ -34,4 +34,5 @@ public class DevelopmentDatabaseConfig {
     service.setDefaultPort(DB_PORT);
     return service;
   }
+  
 }
