@@ -52,8 +52,8 @@ public class Oauth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 	        	.withClient(frontendClientId)
 	        		.secret(frontendClientSecret)
 	        		.authorizedGrantTypes("password","authorization_code", "refresh_token")
-	        		.accessTokenValiditySeconds(tokenValiditySeconds) //1 hour
-					.refreshTokenValiditySeconds(refreshTokenValiditySeconds) //1 day
+	        		.accessTokenValiditySeconds(tokenValiditySeconds)
+					.refreshTokenValiditySeconds(refreshTokenValiditySeconds)
 	        		.scopes("read");
     }
  
