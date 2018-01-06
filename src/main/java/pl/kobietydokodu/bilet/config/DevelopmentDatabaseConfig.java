@@ -13,7 +13,7 @@ import com.mysql.jdbc.Driver;
 import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
 
 @Configuration
-@Profile("development")
+@Profile({"development", "test"})
 public class DevelopmentDatabaseConfig {
  
   protected static final int DB_PORT = 3310;
