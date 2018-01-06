@@ -47,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .anyRequest()
-                    .denyAll()
+                .antMatchers("/health").permitAll()
+                .anyRequest().denyAll()
                 .and()
             .formLogin()
                 .disable();
