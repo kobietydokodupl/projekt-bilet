@@ -20,38 +20,38 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER) //niewymagana, ale zalecana
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	DataSource dataSource;
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-			.dataSource(dataSource)
-			.usersByUsernameQuery("SELECT `email`,`passwordHash`,`active` FROM `users` WHERE `email`=?")
-			.authoritiesByUsernameQuery("SELECT `email`,'USER' FROM `users` WHERE `email`=?")
-			.passwordEncoder(passwordEncoder());
-	}
-	
-	@Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+  @Autowired
+  DataSource dataSource;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/health").permitAll()
-                .anyRequest().denyAll()
-                .and()
-            .formLogin()
-                .disable();
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.jdbcAuthentication()
+      .dataSource(dataSource)
+      .usersByUsernameQuery("SELECT `email`,`passwordHash`,`active` FROM `users` WHERE `email`=?")
+      .authoritiesByUsernameQuery("SELECT `email`,'USER' FROM `users` WHERE `email`=?")
+      .passwordEncoder(passwordEncoder());
+  }
+
+  @Override
+  @Bean
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+      .authorizeRequests()
+        .antMatchers("/health").permitAll()
+        .anyRequest().denyAll()
+        .and()
+      .formLogin()
+        .disable();
+  }
 
 }
