@@ -37,6 +37,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>ch.vorburger.mariaDB4j</groupId>
+      <artifactId>mariaDB4j-db-linux64</artifactId>
+      <version>10.1.13</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
