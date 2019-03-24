@@ -22,19 +22,19 @@ import com.fasterxml.jackson.databind.node.TextNode;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class WebappApplicationIT {
     
-    @Autowired
-    private TestRestTemplate restTemplate;
+  @Autowired
+  private TestRestTemplate restTemplate;
     
-	@Test
-	public void contextLoads() {
-	    ResponseEntity<ObjectNode> response = this.restTemplate.getForEntity("/health", ObjectNode.class);
-	    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-	    
-	    ObjectNode body = response.getBody();
-        assertThat(body).isNotNull().isNotEmpty();
-	    
-        JsonNode healthStatus = body.get("status");
-        assertThat(healthStatus).isInstanceOf(TextNode.class);
-	    assertThat(healthStatus.asText()).isEqualTo("UP");
-	}
+  @Test
+  public void contextLoads() {
+    ResponseEntity<ObjectNode> response = this.restTemplate.getForEntity("/actuator/health", ObjectNode.class);
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        
+    ObjectNode body = response.getBody();
+    assertThat(body).isNotNull().isNotEmpty();
+        
+    JsonNode healthStatus = body.get("status");
+    assertThat(healthStatus).isInstanceOf(TextNode.class);
+    assertThat(healthStatus.asText()).isEqualTo("UP");
+  }
 }
