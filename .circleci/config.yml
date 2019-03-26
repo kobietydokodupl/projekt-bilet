@@ -5,7 +5,7 @@ jobs: # a collection of steps
     working_directory: ~/projekt-bilet # directory where steps will run
 
     docker: # run the steps with Docker
-      - image: circleci/openjdk:openjdk:11.0.2-jdk-stretch
+      - image: circleci/openjdk:11.0.2-jdk-stretch
 
     steps: # a collection of executable commands
 
